@@ -29,7 +29,7 @@ class TitleScreen {
     this.element = document.createElement("div");
     this.element.classList.add("TitleScreen");
     this.element.innerHTML = (`
-      <img class="TitleScreen_logo" src="/images/logo.png" alt="Exitus" />
+      <img class="TitleScreen_logo" src="/images/Exitus_logo.png" alt="Exitus" />
     `)
 
   }
@@ -45,6 +45,7 @@ class TitleScreen {
       container.appendChild(this.element);
       this.keyboardMenu = new KeyboardMenu();
       this.keyboardMenu.init(this.element);
+      console.log(this.getOptions(resolve).length);
       this.keyboardMenu.setOptions(this.getOptions(resolve))
     })
   }

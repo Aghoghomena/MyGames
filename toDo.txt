@@ -11,3 +11,5 @@ Improve HUD to reflect additional stats
 Add dialog
 
 Add invisible walls to movement
+
+determine if object should mount in OverworldMap
