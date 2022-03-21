@@ -1,0 +1,13 @@
+change player state class
+
+get logo
+
+change player states in progress.save()
+
+update HUD.createElement()
+
+Improve HUD to reflect additional stats
+
+Add dialog
+
+Add invisible walls to movement
