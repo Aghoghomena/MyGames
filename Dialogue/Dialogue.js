@@ -23,10 +23,7 @@ class Dialogue {
     } else {
       this.participants[id] = new DialogueObject({...config}, this);
     }
-
-      //Populate first active pizza
-
-      console.log(this)
+    console.log(this)
   }
 
   createElement() {

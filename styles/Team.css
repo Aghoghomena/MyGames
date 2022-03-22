@@ -7,7 +7,7 @@
 .Team[data-team="player"] {
   left:4px;
 }
-.Team[data-team="enemy"] {
+.Team[data-team="gameObject"] {
   right:4px;
 }
 
@@ -16,7 +16,7 @@
   display:none;
 }
 .Team .active-pizza-indicator {
-  display:none;
+  display:block;
 }
 
 /* Display them as opted in by data-attributes */

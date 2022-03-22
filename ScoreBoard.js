@@ -18,7 +18,6 @@ class ScoreBoard {
     this.hudElement = document.createElement("div");
     this.hudElement.classList.add("ScoreBoard");
     this.hudElement.setAttribute("data-scoreboard", this.id);
-    this.hudElement.setAttribute("data-team", this.team);
     if (this.id === "sp") {
       this.hudElement.setAttribute("score-type", "amount");
       this.hudElement.innerHTML = (`

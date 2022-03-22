@@ -4,48 +4,7 @@ class Battle {
     this.enemy = enemy;
     this.onComplete = onComplete;
 
-    this.combatants = {
-      // "player1": new Combatant({
-      //   ...Pizzas.s001,
-      //   team: "player",
-      //   hp: 30,
-      //   maxHp: 50,
-      //   xp: 95,
-      //   maxXp: 100,
-      //   level: 1,
-      //   status: { type: "saucy" },
-      //   isPlayerControlled: true
-      // }, this),
-      // "player2": new Combatant({
-      //   ...Pizzas.s002,
-      //   team: "player",
-      //   hp: 30,
-      //   maxHp: 50,
-      //   xp: 75,
-      //   maxXp: 100,
-      //   level: 1,
-      //   status: null,
-      //   isPlayerControlled: true
-      // }, this),
-      // "enemy1": new Combatant({
-      //   ...Pizzas.v001,
-      //   team: "enemy",
-      //   hp: 1,
-      //   maxHp: 50,
-      //   xp: 20,
-      //   maxXp: 100,
-      //   level: 1,
-      // }, this),
-      // "enemy2": new Combatant({
-      //   ...Pizzas.f001,
-      //   team: "enemy",
-      //   hp: 25,
-      //   maxHp: 50,
-      //   xp: 30,
-      //   maxXp: 100,
-      //   level: 1,
-      // }, this)
-    }
+    this.combatants = {}
 
     this.activeCombatants = {
       player: null, //"player1",
@@ -54,7 +13,7 @@ class Battle {
 
     //Dynamically add the Player team
     window.playerState.lineup.forEach(id => {
-      this.addCombatant(id, "player", window.playerState.pizzas[id])
+      this.addCombatant(id, "player", window.playerState.stats[id])
     });
     //Now the enemy team
     Object.keys(this.enemy.pizzas).forEach(key => {
@@ -78,12 +37,14 @@ class Battle {
   }
 
   addCombatant(id, team, config) {
+    if (team === "player") {
       this.combatants[id] = new Combatant({
         ...Pizzas[config.pizzaId],
         ...config,
         team,
         isPlayerControlled: team === "player"
       }, this)
+    }
 
       //Populate first active pizza
 
@@ -139,14 +100,11 @@ class Battle {
 
         if (winner === "player") {
           const playerState = window.playerState;
-          Object.keys(playerState.pizzas).forEach(id => {
-            const playerStatePizza = playerState.pizzas[id];
+          Object.keys(playerState.stats).forEach(id => {
+            const playerStateStat = playerState.stats[id];
             const combatant = this.combatants[id];
             if (combatant) {
-              playerStatePizza.hp = combatant.hp;
-              playerStatePizza.xp = combatant.xp;
-              playerStatePizza.maxXp = combatant.maxXp;
-              playerStatePizza.level = combatant.level;
+              playerStateStat.value = combatant.value;
             }
           })
 
@@ -160,7 +118,7 @@ class Battle {
         }
 
         this.element.remove();
-        this.onComplete(winner === "player");
+        this.onComplete(true);
       }
     })
     this.turnCycle.init();

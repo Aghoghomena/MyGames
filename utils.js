@@ -44,6 +44,21 @@ const utils = {
       detail
     });
     document.dispatchEvent(event);
+  },
+
+  getQuestions(pool, numberOfQuestions) {
+    let tempQuestions = [];
+    Object.values(window.Questions).forEach(q => {
+      if (pool.includes(q.pool) && !q.answered) {
+        tempQuestions.push(new Question(q));
+      }
+    })
+    const shuffled = tempQuestions.sort(() => 0.5 - Math.random());
+    if (shuffled.length <= numberOfQuestions ) {
+      return shuffled;
+    } else {
+      return shuffled.slice(0, numberOfQuestions);
+    }
   }
   
 }

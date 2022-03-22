@@ -63,6 +63,17 @@ class OverworldEvent {
     message.init( document.querySelector(".game-container") )
   }
 
+  options(resolve) {
+    const menu = new Options({
+      question: this.event.question,
+      onComplete: submission => {
+        window.Questions[question.name].answered = true;
+        resolve(submission)
+      }
+    })
+    menu.init( document.querySelector(".game-container") )
+  }
+
   changeMap(resolve) {
     const sceneTransition = new SceneTransition();
     sceneTransition.init(document.querySelector(".game-container"), () => {
@@ -78,26 +89,42 @@ class OverworldEvent {
     })
   }
 
-  battle(resolve) {
-    const battle = new Battle({
-      enemy: Enemies[this.event.enemyId],
-      onComplete: (didWin) => {
-        resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE");
-      }
-    })
-    battle.init(document.querySelector(".game-container"));
+  // battle(resolve) {
+  //   const battle = new Battle({
+  //     enemy: Enemies[this.event.enemyId],
+  //     onComplete: (didWin) => {
+  //       resolve(didWin ? "WON_BATTLE" : "LOST_BATTLE");
+  //     }
+  //   })
+  //   battle.init(document.querySelector(".game-container"));
 
-  }
+  // }
 
   dialogue(resolve) {
-    console.log("howyd");
-    const dialogue = new Dialogue({
-      object: InteractiveObjects[this.event.id], 
-      onComplete: () => {
-        resolve();
-      }
-    })
-    dialogue.init(document.querySelector(".game-container"));
+    const object = window.InteractiveObjects[this.event.id];
+    const questions = utils.getQuestions(object.pool, object.numberOfQuestions);
+    let newEvents = [];
+    questions.forEach(q => {
+      newEvents.push({type: "message", text: q.content});
+      newEvents.push({type: "options", question: q});
+    });
+    console.log(newEvents);
+    for (let i=0; i<newEvents.length; i++) {
+      const eventHandler = new OverworldEvent({
+        event: newEvents[i],
+        map: this.map,
+      })
+      const result = eventHandler.init();
+    }
+    resolve();
+
+    // const dialogue = new Dialogue({
+    //   object: InteractiveObjects[this.event.id], 
+    //   onComplete: () => {
+    //     resolve();
+    //   }
+    // })
+    // dialogue.init(document.querySelector(".game-container"));
   }
 
   pause(resolve) {

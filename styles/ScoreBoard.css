@@ -25,25 +25,25 @@
 }
 
 .Dialogue .ScoreBoard {
-  transform: scale(2);
-  transition: opacity 0.4s;
+/*  transform: scale(2);
+*/  transition: opacity 0.4s;
 }
 .Dialogue .ScoreBoard[data-active="false"] {
-  opacity: 0;
+  opacity: 1;
 }
 .Dialogue .ScoreBoard[data-active="true"] {
   opacity: 1;
 }
 
-/*.ScoreBoard[data-team="player"] {
+.ScoreBoard[data-team="player"] {
   left: 46px;
   top: 70px;
 }
-.ScoreBoard[data-team="enemy"] {
+.ScoreBoard[data-team="gameObject"] {
   top: 28px;
   right: 77px;
 }
-*/
+
 .Stat_character_crop {
   position: absolute;
   bottom: 1px;

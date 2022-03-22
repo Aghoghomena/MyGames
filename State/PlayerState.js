@@ -44,7 +44,7 @@ class PlayerState {
         name: "Espees",
         src: "/Exitus_assets/money.png",
         icon: "",
-        value: 500,
+        value: 200,
         status: null,
       },
     }
@@ -54,8 +54,7 @@ class PlayerState {
       // { actionId: "item_recoverHp", instanceId: "item2" },
       // { actionId: "item_recoverHp", instanceId: "item3" },
     ]
-    this.storyFlags = {
-    };
+    this.storyFlags = {};
   }
 
   // addPizza(pizzaId) {
