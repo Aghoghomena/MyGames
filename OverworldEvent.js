@@ -103,19 +103,23 @@ class OverworldEvent {
   dialogue(resolve) {
     const object = window.InteractiveObjects[this.event.id];
     const questions = utils.getQuestions(object.pool, object.numberOfQuestions);
-    let newEvents = [];
     questions.forEach(q => {
-      newEvents.push({type: "message", text: q.content});
-      newEvents.push({type: "options", question: q});
-    });
-    console.log(newEvents);
-    for (let i=0; i<newEvents.length; i++) {
-      const eventHandler = new OverworldEvent({
-        event: newEvents[i],
-        map: this.map,
+      const menu = new Options({
+        question: q,
+        onComplete: submission => {
+          window.Questions[q.name].answered = true;
+          // resolve(submission)
+        }
       })
-      const result = eventHandler.init();
-    }
+      menu.init( document.querySelector(".game-container") )
+    });
+    // for (let i=0; i<newEvents.length; i++) {
+    //   const eventHandler = new OverworldEvent({
+    //     event: newEvents[i],
+    //     map: this.map,
+    //   })
+    //   const result = eventHandler.init();
+    // }
     resolve();
 
     // const dialogue = new Dialogue({

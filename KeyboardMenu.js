@@ -24,7 +24,9 @@ class KeyboardMenu {
     this.element.querySelectorAll("button").forEach(button => {
 
       button.addEventListener("click", () => {
+        console.log(this.options);
         const chosenOption = this.options[ Number(button.dataset.button) ];
+        console.log(chosenOption);
         chosenOption.handler();
       })
       button.addEventListener("mouseenter", () => {

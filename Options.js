@@ -10,9 +10,11 @@ class Options {
       options: [
         {
           ...this.question.options.map(option => {
+          	console.log(option.content);
+          	console.log(this.question.content);
           	return {
           	  label: option.content,
-          	  description: "",
+          	  description: this.question.content,
           	  handler: () => {
           	  	this.menuSubmit(option);
           	  }
