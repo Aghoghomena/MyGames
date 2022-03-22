@@ -16,6 +16,18 @@ class Combatant {
     return this.xp / this.maxXp * 100;
   }
 
+  get spiritState() {
+    return this.spirituality
+  }
+
+  get mentalState() {
+    return this.xp / this.maxXp * 100;
+  }
+
+  get healthState() {
+    return this.xp / this.maxXp * 100;
+  }
+
   get isActive() {
     return this.battle?.activeCombatants[this.team] === this.id;
   }
@@ -36,14 +48,31 @@ class Combatant {
         <img class="Combatant_character" alt="${this.name}" src="${this.src}" />
       </div>
       <img class="Combatant_type" src="${this.icon}" alt="${this.type}" />
-      <svg viewBox="0 0 26 3" class="Combatant_life-container">
-        <rect x=0 y=0 width="0%" height=1 fill="#82ff71" />
-        <rect x=0 y=1 width="0%" height=2 fill="#3ef126" />
-      </svg>
-      <svg viewBox="0 0 26 2" class="Combatant_xp-container">
-        <rect x=0 y=0 width="0%" height=1 fill="#ffd76a" />
-        <rect x=0 y=1 width="0%" height=1 fill="#ffc934" />
-      </svg>
+      <div class="status-container">
+      <div class="status-title-and-bar-div" >
+        <p class="status-title">Spiritual:</p>
+        <svg viewBox="0 0 26 3" class="Combatant_life-container">
+          <rect x=0 y=0 width="0%" height=1 fill="#82ff71" />
+          <rect x=0 y=1 width="0%" height=2 fill="#3ef126" />
+        </svg>
+      </div>
+      <div class="status-title-and-bar-div" >      
+        <p class="status-title">Mental:</p>
+        <svg viewBox="0 0 26 3" class="Combatant_xp-container">
+          <rect x=0 y=0 width="0%" height=1 fill="#1C06EE" />
+          <rect x=0 y=1 width="0%" height=2 fill="#1C06EE" />
+        </svg>
+      </div>
+      <div class="status-title-and-bar-div" >
+        <p class="status-title">Health:</p>
+        <svg viewBox="0 0 26 3" class="Combatant_xp-container2">
+          <rect x=0 y=0 width="0%" height=1 fill="#ffd76a" />
+          <rect x=0 y=1 width="0%" height=2 fill="#ffc934" />
+        </svg>
+      </div>
+      </div>
+      
+      
       <p class="Combatant_status"></p>
     `);
 
@@ -55,6 +84,7 @@ class Combatant {
 
     this.hpFills = this.hudElement.querySelectorAll(".Combatant_life-container > rect");
     this.xpFills = this.hudElement.querySelectorAll(".Combatant_xp-container > rect");
+    this.xp2Fills = this.hudElement.querySelectorAll(".Combatant_xp-container2 > rect");
   }
 
   update(changes={}) {
@@ -68,8 +98,9 @@ class Combatant {
     this.pizzaElement.setAttribute("data-active", this.isActive);
 
     //Update HP & XP percent fills
-    this.hpFills.forEach(rect => rect.style.width = `${this.hpPercent}%`)
-    this.xpFills.forEach(rect => rect.style.width = `${this.xpPercent}%`)
+    this.hpFills.forEach(rect => rect.style.width = `${this.spiritState}%`)
+    this.xpFills.forEach(rect => rect.style.width = `${this.spiritState}%`)
+    this.xp2Fills.forEach(rect => rect.style.width = `${this.spiritState}%`)
 
     //Update level on screen
     this.hudElement.querySelector(".Combatant_level").innerText = this.level;

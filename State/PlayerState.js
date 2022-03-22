@@ -9,6 +9,11 @@ class PlayerState {
         maxXp: 100,
         level: 1,
         status: null,
+        //stats for player's overall well being
+        spirituality: 100,
+        mental: 50,
+        health: 100
+
       },
       "p2": {
         pizzaId: "v001",
@@ -18,6 +23,10 @@ class PlayerState {
         maxXp: 100,
         level: 1,
         status: null,
+        //stats for player's overall well being
+        spirituality: 100,
+        mental: 50,
+        health: 100
       },
       "p3": {
         pizzaId: "f001",
@@ -27,6 +36,10 @@ class PlayerState {
         maxXp: 100,
         level: 1,
         status: null,
+        //stats for player's overall well being
+        spirituality: 100,
+        mental: 50,
+        health: 100
       }
     }
     this.lineup = ["p1", "p2", "p3"];
