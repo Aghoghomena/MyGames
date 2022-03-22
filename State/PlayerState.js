@@ -12,7 +12,7 @@ class PlayerState {
         //stats for player's overall well being
         spirituality: 100,
         mental: 50,
-        health: 100
+        health: 20
 
       },
       "p2": {
@@ -26,7 +26,7 @@ class PlayerState {
         //stats for player's overall well being
         spirituality: 100,
         mental: 50,
-        health: 100
+        health: 20
       },
       "p3": {
         pizzaId: "f001",
@@ -39,7 +39,7 @@ class PlayerState {
         //stats for player's overall well being
         spirituality: 100,
         mental: 50,
-        health: 100
+        health: 20
       }
     }
     this.lineup = ["p1", "p2", "p3"];

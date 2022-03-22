@@ -21,11 +21,11 @@ class Combatant {
   }
 
   get mentalState() {
-    return this.xp / this.maxXp * 100;
+    return this.mental;
   }
 
   get healthState() {
-    return this.xp / this.maxXp * 100;
+    return this.health;
   }
 
   get isActive() {
@@ -99,8 +99,8 @@ class Combatant {
 
     //Update HP & XP percent fills
     this.hpFills.forEach(rect => rect.style.width = `${this.spiritState}%`)
-    this.xpFills.forEach(rect => rect.style.width = `${this.spiritState}%`)
-    this.xp2Fills.forEach(rect => rect.style.width = `${this.spiritState}%`)
+    this.xpFills.forEach(rect => rect.style.width = `${this.mentalState}%`)
+    this.xp2Fills.forEach(rect => rect.style.width = `${this.healthState}%`)
 
     //Update level on screen
     this.hudElement.querySelector(".Combatant_level").innerText = this.level;
