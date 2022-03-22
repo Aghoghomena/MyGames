@@ -89,6 +89,17 @@ class OverworldEvent {
 
   }
 
+  dialogue(resolve) {
+    console.log("howyd");
+    const dialogue = new Dialogue({
+      object: InteractiveObjects[this.event.id], 
+      onComplete: () => {
+        resolve();
+      }
+    })
+    dialogue.init(document.querySelector(".game-container"));
+  }
+
   pause(resolve) {
     this.map.isPaused = true;
     const menu = new PauseMenu({
@@ -104,6 +115,16 @@ class OverworldEvent {
 
   addStoryFlag(resolve) {
     window.playerState.storyFlags[this.event.flag] = true;
+    resolve();
+  }
+
+  removeStoryFlag(resolve) {
+    window.playerState.storyFlags[this.event.flag] = false;
+    resolve();
+  }
+
+  save(resolve) {
+    this.event.progress.save();
     resolve();
   }
 

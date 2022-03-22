@@ -1,32 +1,25 @@
-class Combatant {
-  constructor(config, battle) {
+class Question {
+  constructor(config, dialogue) {
     Object.keys(config).forEach(key => {
       this[key] = config[key];
     })
-    this.hp = typeof(this.hp) === "undefined" ? this.maxHp : this.hp;
-    this.battle = battle;
-  }
-
-  get hpPercent() {
-    const percent = this.hp / this.maxHp * 100;
-    return percent > 0 ? percent : 0;
-  }
-
-  get xpPercent() {
-    return this.xp / this.maxXp * 100;
+    this.answered = false;
+    this.dialogue = dialogue;
   }
 
   get isActive() {
-    return this.battle?.activeCombatants[this.team] === this.id;
+    //Check again
+    return this.dialogue?.activeQuestions[this.team] === this.id;
   }
 
-  get givesXp() {
-    return this.level * 20;
-  }
+  // get givesXp() {
+  //   return this.level * 20;
+  // }
 
   createElement() {
+    //Check again
     this.hudElement = document.createElement("div");
-    this.hudElement.classList.add("Combatant");
+    this.hudElement.classList.add("Question");
     this.hudElement.setAttribute("data-combatant", this.id);
     this.hudElement.setAttribute("data-team", this.team);
     this.hudElement.innerHTML = (`
@@ -86,7 +79,7 @@ class Combatant {
   }
 
   getReplacedEvents(originalEvents) {
-
+    //Update
     if (this.status?.type === "clumsy" && utils.randomFromArray([true, false, false])) {
       return [
         { type: "textMessage", text: `${this.name} flops over!` },
@@ -97,9 +90,10 @@ class Combatant {
   }
 
   getPostEvents() {
+    //Update
     if (this.status?.type === "saucy") {
       return [
-        { type: "textMessage", text: "Feelin' saucy!" },
+        { type: "textMessage", text: "....." },
         { type: "stateChange", recover: 5, onCaster: true }
       ]
     } 

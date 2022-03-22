@@ -181,11 +181,27 @@ window.OverworldMaps = {
         ]
       }),
     },
+    cutsceneSpaces: {
+      [utils.asGridCoord(5,10)]: [
+        {
+          events: [
+            { 
+              type: "changeMap", 
+              map: "Outdoors_1",
+              x: utils.withGrid(5),
+              y: utils.withGrid(9), 
+              direction: "down"
+            }
+          ]
+        }
+      ]
+    },
     walls: {
       [utils.asGridCoord(7,6)] : true,
       [utils.asGridCoord(8,6)] : true,
       [utils.asGridCoord(7,7)] : true,
       [utils.asGridCoord(8,7)] : true,
+
       [utils.asGridCoord(0,3)] : true,
       [utils.asGridCoord(0,4)] : true,
       [utils.asGridCoord(0,5)] : true,
@@ -214,6 +230,7 @@ window.OverworldMaps = {
       [utils.asGridCoord(3,10)] : true,
       [utils.asGridCoord(4,10)] : true,
       [utils.asGridCoord(5,10)] : true,
+      [utils.asGridCoord(5,11)] : true,
       [utils.asGridCoord(6,10)] : true,
       [utils.asGridCoord(7,10)] : true,
       [utils.asGridCoord(8,10)] : true,
@@ -222,7 +239,164 @@ window.OverworldMaps = {
     },
   },
   Outdoors_1: {
+    id: "Outdoors_1",
+    lowerSrc: "/images/maps/StreetLower.png",
+    upperSrc: "/images/maps/StreetUpper.png",
+    gameObjects: {
+      hero: new Person({
+        isPlayerControlled: true,
+        x: utils.withGrid(30),
+        y: utils.withGrid(10),
+      }),
+      npcB: new Person({
+        x: utils.withGrid(20),
+        y: utils.withGrid(9),
+        src: "/images/characters/people/npc3.png",
+        behaviorLoop: [
+          { type: "walk", direction: "down", },
+          { type: "walk", direction: "down", },
+          { type: "walk", direction: "right", },
+          { type: "walk", direction: "right", },
+          { type: "walk", direction: "up", },
+          { type: "walk", direction: "up", },
+          { type: "walk", direction: "left", },
+          { type: "walk", direction: "left", },
+          //{ type: "stand", direction: "up", time: 400, },
+        ],
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "You made it! We're going to have such a good time!", faceHero:"npcB" },
+              { type: "dialogue", id: "john" },
+            ]
+          }
+        ]
+      })
+    },
+    cutsceneSpaces: {
+      [utils.asGridCoord(5,9)]: [
+        {
+          events: [
+            { 
+              type: "changeMap",
+              map: "FirstRoom",
+              x: utils.withGrid(5),
+              y: utils.withGrid(10), 
+              direction: "up"
+            }
+          ]
+        }
+      ]
+    },
+    walls: {
+      [utils.asGridCoord(5,14)] : true,
+      [utils.asGridCoord(6,14)] : true,
+      [utils.asGridCoord(7,14)] : true,
+      [utils.asGridCoord(8,14)] : true,
 
+      [utils.asGridCoord(16,9)] : true,
+      [utils.asGridCoord(16,10)] : true,
+      [utils.asGridCoord(16,11)] : true,
+      [utils.asGridCoord(17,9)] : true,
+      [utils.asGridCoord(17,10)] : true,
+      [utils.asGridCoord(17,11)] : true,
+
+      [utils.asGridCoord(18,11)] : true,
+      [utils.asGridCoord(19,11)] : true,
+
+      [utils.asGridCoord(25,9)] : true,
+      [utils.asGridCoord(25,10)] : true,
+      [utils.asGridCoord(25,11)] : true,
+      [utils.asGridCoord(26,9)] : true,
+      [utils.asGridCoord(26,10)] : true,
+      [utils.asGridCoord(26,11)] : true,
+
+      [utils.asGridCoord(3,10)] : true,
+      [utils.asGridCoord(3,11)] : true,
+      [utils.asGridCoord(3,12)] : true,
+      [utils.asGridCoord(3,13)] : true,
+      [utils.asGridCoord(3,14)] : true,
+      [utils.asGridCoord(3,15)] : true,
+      [utils.asGridCoord(3,16)] : true,
+      [utils.asGridCoord(3,17)] : true,
+      [utils.asGridCoord(3,18)] : true,
+      [utils.asGridCoord(4,19)] : true,
+      [utils.asGridCoord(5,19)] : true,
+      [utils.asGridCoord(6,19)] : true,
+      [utils.asGridCoord(7,19)] : true,
+      [utils.asGridCoord(8,19)] : true,
+      [utils.asGridCoord(9,19)] : true,
+      [utils.asGridCoord(10,19)] : true,
+      [utils.asGridCoord(11,19)] : true,
+      [utils.asGridCoord(12,19)] : true,
+      [utils.asGridCoord(13,19)] : true,
+      [utils.asGridCoord(14,19)] : true,
+      [utils.asGridCoord(15,19)] : true,
+      [utils.asGridCoord(16,19)] : true,
+      [utils.asGridCoord(17,19)] : true,
+      [utils.asGridCoord(18,19)] : true,
+      [utils.asGridCoord(19,19)] : true,
+      [utils.asGridCoord(20,19)] : true,
+      [utils.asGridCoord(21,19)] : true,
+      [utils.asGridCoord(22,19)] : true,
+      [utils.asGridCoord(23,19)] : true,
+      [utils.asGridCoord(24,19)] : true,
+      [utils.asGridCoord(25,19)] : true,
+      [utils.asGridCoord(26,19)] : true,
+      [utils.asGridCoord(27,19)] : true,
+      [utils.asGridCoord(28,19)] : true,
+      [utils.asGridCoord(29,19)] : true,
+      [utils.asGridCoord(30,19)] : true,
+      [utils.asGridCoord(31,19)] : true,
+      [utils.asGridCoord(32,19)] : true,
+      [utils.asGridCoord(33,19)] : true,
+      [utils.asGridCoord(34,19)] : true,
+      [utils.asGridCoord(35,10)] : true,
+      [utils.asGridCoord(35,11)] : true,
+      [utils.asGridCoord(35,12)] : true,
+      [utils.asGridCoord(35,13)] : true,
+      [utils.asGridCoord(35,14)] : true,
+      [utils.asGridCoord(35,15)] : true,
+      [utils.asGridCoord(35,16)] : true,
+      [utils.asGridCoord(35,17)] : true,
+      [utils.asGridCoord(35,18)] : true,
+      [utils.asGridCoord(4,9)] : true,
+      [utils.asGridCoord(5,8)] : true,
+      [utils.asGridCoord(6,9)] : true,
+      [utils.asGridCoord(7,9)] : true,
+      [utils.asGridCoord(8,9)] : true,
+      [utils.asGridCoord(9,9)] : true,
+      [utils.asGridCoord(10,9)] : true,
+      [utils.asGridCoord(11,9)] : true,
+      [utils.asGridCoord(12,9)] : true,
+      [utils.asGridCoord(13,8)] : true,
+      [utils.asGridCoord(14,8)] : true,
+      [utils.asGridCoord(15,7)] : true,
+      [utils.asGridCoord(16,7)] : true,
+      [utils.asGridCoord(17,7)] : true,
+      [utils.asGridCoord(18,7)] : true,
+      [utils.asGridCoord(19,7)] : true,
+      [utils.asGridCoord(20,7)] : true,
+      [utils.asGridCoord(21,7)] : true,
+      [utils.asGridCoord(22,7)] : true,
+      [utils.asGridCoord(23,7)] : true,
+      [utils.asGridCoord(24,7)] : true,
+      [utils.asGridCoord(24,6)] : true,
+      [utils.asGridCoord(24,5)] : true,
+      [utils.asGridCoord(25,4)] : true,
+      [utils.asGridCoord(26,5)] : true,
+      [utils.asGridCoord(26,6)] : true,
+      [utils.asGridCoord(26,7)] : true,
+      [utils.asGridCoord(27,7)] : true,
+      [utils.asGridCoord(28,8)] : true,
+      [utils.asGridCoord(28,9)] : true,
+      [utils.asGridCoord(29,8)] : true,
+      [utils.asGridCoord(30,9)] : true,
+      [utils.asGridCoord(31,9)] : true,
+      [utils.asGridCoord(32,9)] : true,
+      [utils.asGridCoord(33,9)] : true,
+      [utils.asGridCoord(34,9)] : true,
+    },
   }
   // DemoRoom: {
   //   id: "DemoRoom",

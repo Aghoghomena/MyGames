@@ -5,11 +5,11 @@
   image-rendering: pixelated;
 }
 
-.Hud .Combatant {
+.Hud .ScoreBoard {
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
 }
 
-.Hud .Combatant_type {
-  display:none;
+.Hud .Stat_type {
+  display: none;
 }

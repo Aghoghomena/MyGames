@@ -1,10 +1,10 @@
-class Combatant {
-  constructor(config, battle) {
+class Player {
+  constructor(config, dialogue) {
     Object.keys(config).forEach(key => {
       this[key] = config[key];
     })
     this.hp = typeof(this.hp) === "undefined" ? this.maxHp : this.hp;
-    this.battle = battle;
+    this.dialogue = dialogue;
   }
 
   get hpPercent() {
@@ -17,7 +17,7 @@ class Combatant {
   }
 
   get isActive() {
-    return this.battle?.activeCombatants[this.team] === this.id;
+    return true;
   }
 
   get givesXp() {
@@ -26,35 +26,29 @@ class Combatant {
 
   createElement() {
     this.hudElement = document.createElement("div");
-    this.hudElement.classList.add("Combatant");
-    this.hudElement.setAttribute("data-combatant", this.id);
+    this.hudElement.classList.add("Participant");
+    this.hudElement.setAttribute("data-participant", this.id);
     this.hudElement.setAttribute("data-team", this.team);
     this.hudElement.innerHTML = (`
-      <p class="Combatant_name">${this.name}</p>
-      <p class="Combatant_level"></p>
-      <div class="Combatant_character_crop">
-        <img class="Combatant_character" alt="${this.name}" src="${this.src}" />
+      <p class="Participant_name">${this.name}</p>
+      <p class="Participant_level"></p>
+      <div class="Participant_character_crop">
+        <img class="Participant_character" alt="${this.name}" src="${this.src}" />
       </div>
-      <img class="Combatant_type" src="${this.icon}" alt="${this.type}" />
-      <svg viewBox="0 0 26 3" class="Combatant_life-container">
+      <img class="Participant_type" src="${this.icon}" alt="${this.type}" />
+      <svg viewBox="0 0 26 3" class="Participant_life-container">
         <rect x=0 y=0 width="0%" height=1 fill="#82ff71" />
         <rect x=0 y=1 width="0%" height=2 fill="#3ef126" />
       </svg>
-      <svg viewBox="0 0 26 2" class="Combatant_xp-container">
+      <svg viewBox="0 0 26 2" class="Participant_xp-container">
         <rect x=0 y=0 width="0%" height=1 fill="#ffd76a" />
         <rect x=0 y=1 width="0%" height=1 fill="#ffc934" />
       </svg>
-      <p class="Combatant_status"></p>
+      <p class="Participant_status"></p>
     `);
 
-    this.pizzaElement = document.createElement("img");
-    this.pizzaElement.classList.add("Pizza");
-    this.pizzaElement.setAttribute("src", this.src );
-    this.pizzaElement.setAttribute("alt", this.name );
-    this.pizzaElement.setAttribute("data-team", this.team );
-
-    this.hpFills = this.hudElement.querySelectorAll(".Combatant_life-container > rect");
-    this.xpFills = this.hudElement.querySelectorAll(".Combatant_xp-container > rect");
+    this.hpFills = this.hudElement.querySelectorAll(".Participant_life-container > rect");
+    this.xpFills = this.hudElement.querySelectorAll(".Participant_xp-container > rect");
   }
 
   update(changes={}) {
@@ -65,17 +59,16 @@ class Combatant {
 
     //Update active flag to show the correct pizza & hud
     this.hudElement.setAttribute("data-active", this.isActive);
-    this.pizzaElement.setAttribute("data-active", this.isActive);
 
     //Update HP & XP percent fills
     this.hpFills.forEach(rect => rect.style.width = `${this.hpPercent}%`)
     this.xpFills.forEach(rect => rect.style.width = `${this.xpPercent}%`)
 
     //Update level on screen
-    this.hudElement.querySelector(".Combatant_level").innerText = this.level;
+    this.hudElement.querySelector(".Participant_level").innerText = this.level;
 
     //Update status
-    const statusElement = this.hudElement.querySelector(".Combatant_status");
+    const statusElement = this.hudElement.querySelector(".Participant_status");
     if (this.status) {
       statusElement.innerText = this.status.type;
       statusElement.style.display = "block";
@@ -125,7 +118,6 @@ class Combatant {
   init(container) {
     this.createElement();
     container.appendChild(this.hudElement);
-    container.appendChild(this.pizzaElement);
     this.update();
   }
 

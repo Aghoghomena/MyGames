@@ -45,7 +45,6 @@ class TitleScreen {
       container.appendChild(this.element);
       this.keyboardMenu = new KeyboardMenu();
       this.keyboardMenu.init(this.element);
-      console.log(this.getOptions(resolve).length);
       this.keyboardMenu.setOptions(this.getOptions(resolve))
     })
   }

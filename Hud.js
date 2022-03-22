@@ -5,12 +5,11 @@ class Hud {
 
   update() {
     this.scoreboards.forEach(s => {
-      s.update(window.playerState.pizzas[s.id])
+      s.update(window.playerState.stats[s.name])
     })
   }
 
   createElement() {
-
     if (this.element) {
       this.element.remove();
       this.scoreboards = [];
@@ -21,12 +20,8 @@ class Hud {
 
     const {playerState} = window;
     playerState.lineup.forEach(key => {
-      const pizza = playerState.pizzas[key];
-      const scoreboard = new Combatant({
-        id: key,
-        ...Pizzas[pizza.pizzaId],
-        ...pizza,
-      }, null)
+      const stat = playerState.stats[key];
+      const scoreboard = new ScoreBoard(stat);
       scoreboard.createElement();
       this.scoreboards.push(scoreboard);
       this.element.appendChild(scoreboard.hudElement);

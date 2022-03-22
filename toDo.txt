@@ -13,3 +13,5 @@ Add dialog
 Add invisible walls to movement
 
 determine if object should mount in OverworldMap
+
+Finish up in dialogue.init() once stats are done 

@@ -1,51 +1,68 @@
-.Combatant {
+.ScoreBoard {
   width: 67px;
   height: 14px;
-  background: url("/images/ui/combatant-plate.png") no-repeat no-repeat;
-  position:absolute;
+  position:relative;
+  margin-bottom: 10px;
 }
 
-.Battle .Combatant {
+.ScoreBoard[score-type="percent"] {
+  background: url("/images/ui/combatant-plate.png") no-repeat no-repeat;
+}
+
+.Espees {
+  position: absolute;
+  font-size: 12px;
+  right: 8px;
+  top: -1px;
+  width: 38px;
+  height: 14px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background: #F8C594;
+  border: 1px solid #A48465;
+  margin: 0;
+}
+
+.Dialogue .ScoreBoard {
   transform: scale(2);
   transition: opacity 0.4s;
 }
-.Battle .Combatant[data-active="false"] {
+.Dialogue .ScoreBoard[data-active="false"] {
   opacity: 0;
 }
-.Battle .Combatant[data-active="true"] {
+.Dialogue .ScoreBoard[data-active="true"] {
   opacity: 1;
 }
 
-/*.Combatant[data-team="player"] {
+/*.ScoreBoard[data-team="player"] {
   left: 46px;
   top: 70px;
 }
-*/
-
-.Combatant[data-team="enemy"] {
+.ScoreBoard[data-team="enemy"] {
   top: 28px;
   right: 77px;
 }
-
-.Combatant_character_crop {
+*/
+.Stat_character_crop {
   position: absolute;
   bottom: 1px;
   left:3px;
-  width: 22px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   overflow:hidden;
 }
-.Combatant_character {
+.Stat_character {
   display:block;
   position: absolute;
-  left: -11px;
+/*  left: -11px;
   bottom: -7px;
-}
-.Battle .Combatant_character_crop {
+*/}
+.Dialogue .Stat_character_crop {
   display:none;
 }
 
-.Combatant_name {
+.Stat_name {
   position: absolute;
   left:-2px;
   top:-8px;
@@ -57,7 +74,7 @@
   padding-right: 2px;
   margin: 0;
 }
-.Combatant_type {
+.Stat_type {
   position: absolute;
   left: 3px;
   top: -2px;
@@ -65,25 +82,25 @@
   height: 16px;
 }
 
-.Combatant_life-container {
+.Stat_value-container {
   position: absolute;
   left:20px;
   top:4px;
   width: 26px;
   height: 3px;
 }
-.Combatant_life-container > rect {
+.Stat_value-container > rect {
   transition: width 0.2s;
 }
 
-.Combatant_xp-container {
+.Stat_xp-container {
   position: absolute;
   left:20px;
   top:8px;
   width: 26px;
   height: 2px;
 }
-.Combatant_level {
+.Stat_level {
   position: absolute;
   font-size: 12px;
   right: 2px;
@@ -98,7 +115,7 @@
   margin: 0;
 }
 
-.Combatant_status {
+.Stat_status {
   position: absolute;
   font-size: 5px;
   left: 47px;
@@ -109,32 +126,32 @@
   color: white;
   margin: 0;
 }
-.Combatant_status[data-status="saucy"] {
+.Stat_status[data-status="saucy"] {
   color: red;
 }
-.Combatant_status[data-status="clumsy"] {
+.Stat_status[data-status="clumsy"] {
   background: #582a79;
 }
 
-.Pizza {
+.Stat_visual {
   position: absolute;
   transform: scale(2);
   transition: opacity 0.4s, transform 0.4s;
   background: url(/images/characters/pizzas/pizza-shadow.png) no-repeat no-repeat;
 }
-.Pizza[data-team="player"] {
+.Stat_visual[data-team="player"] {
   bottom: 73px;
   left: 51px;
 }
-.Pizza[data-team="enemy"] {
+.Stat_visual[data-team="enemy"] {
   top: 47px;
   right: 100px;
 }
-.Pizza[data-active="false"] {
+.Stat_visual[data-active="false"] {
   opacity:0;
   transform: translate3d(0,16px,0) scale(2);
 }
-.Pizza[data-active="true"] {
+.Stat_visual[data-active="true"] {
   opacity:1;
   transform: translate3d(0,0,0) scale(2);
 }
