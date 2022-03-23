@@ -274,15 +274,28 @@ window.OverworldMaps = {
       })
     },
     cutsceneSpaces: {
-      [utils.asGridCoord(5,9)]: [
+      [utils.asGridCoord(25,5)]: [
         {
           events: [
             { 
               type: "changeMap",
-              map: "FirstRoom",
-              x: utils.withGrid(5),
-              y: utils.withGrid(10), 
+              map: "Secret_treasure",
+              x: utils.withGrid(7),
+              y: utils.withGrid(15), 
               direction: "up"
+            }
+          ]
+        }
+      ],
+      [utils.asGridCoord(29,9)]: [
+        {
+          events: [
+            { 
+              type: "changeMap",
+              map: "Shop",
+              x: utils.withGrid(12),
+              y: utils.withGrid(29), 
+              direction: "down"
             }
           ]
         }
@@ -396,6 +409,127 @@ window.OverworldMaps = {
       [utils.asGridCoord(32,9)] : true,
       [utils.asGridCoord(33,9)] : true,
       [utils.asGridCoord(34,9)] : true,
+
+      [utils.asGridCoord(34,13)] : true,
+      [utils.asGridCoord(34,12)] : true,
+      [utils.asGridCoord(34,11)] : true,
+      [utils.asGridCoord(34,10)] : true,
+      [utils.asGridCoord(34,14)] : true,
+      [utils.asGridCoord(34,15)] : true,
+      [utils.asGridCoord(34,16)] : true,
+      [utils.asGridCoord(34,17)] : true,
+      [utils.asGridCoord(34,18)] : true,
+    
+    },
+  },
+  Secret_treasure: {
+    id: "Secret_treasure",
+    lowerSrc: "/images/maps/StreetNorthLower2.png",
+    upperSrc: "/images/maps/StreetNorthUpper2.png",
+    gameObjects: {
+      hero: new Person({
+        isPlayerControlled: true,
+        x: utils.withGrid(30),
+        y: utils.withGrid(10),
+      }),
+      npcB: new Person({
+        x: utils.withGrid(12),
+        y: utils.withGrid(9),
+        src: "/images/characters/people/npc3.png",
+        behaviorLoop: [
+          { type: "walk", direction: "down", },
+          { type: "walk", direction: "down", },
+          { type: "walk", direction: "right", },
+          { type: "walk", direction: "right", },
+          { type: "walk", direction: "up", },
+          { type: "walk", direction: "up", },
+          { type: "walk", direction: "left", },
+          { type: "walk", direction: "left", },
+          //{ type: "stand", direction: "up", time: 400, },
+        ],
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "You made it! We're going to have such a good time!", faceHero:"npcB" },
+              { type: "dialogue", id: "john" },
+            ]
+          }
+        ]
+      })
+    },
+    cutsceneSpaces: {
+      [utils.asGridCoord(7,16)]: [
+        {
+          events: [
+            { 
+              type: "changeMap",
+              map: "Outdoors_1",
+              x: utils.withGrid(25),
+              y: utils.withGrid(5), 
+              direction: "up"
+            }
+          ]
+        }
+      ]
+    },
+    walls: {
+      [utils.asGridCoord(5,14)] : true,
+     
+    },
+  },
+  Shop: {
+    id: "Shop",
+    lowerSrc: "/images/maps/ShopLayers/ShopLower.png",
+    upperSrc: "/images/maps/ShopLayers/ShopUpper.png",
+    gameObjects: {
+      hero: new Person({
+        isPlayerControlled: true,
+        x: utils.withGrid(30),
+        y: utils.withGrid(10),
+      }),
+      npcB: new Person({
+        x: utils.withGrid(12),
+        y: utils.withGrid(9),
+        src: "/images/characters/people/npc3.png",
+        behaviorLoop: [
+          { type: "walk", direction: "down", },
+          { type: "walk", direction: "down", },
+          { type: "walk", direction: "right", },
+          { type: "walk", direction: "right", },
+          { type: "walk", direction: "up", },
+          { type: "walk", direction: "up", },
+          { type: "walk", direction: "left", },
+          { type: "walk", direction: "left", },
+          //{ type: "stand", direction: "up", time: 400, },
+        ],
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "You made it! We're going to have such a good time!", faceHero:"npcB" },
+              { type: "dialogue", id: "john" },
+            ]
+          }
+        ]
+      })
+    },
+    cutsceneSpaces: {
+      [utils.asGridCoord(12,29)]: [
+        {
+          events: [
+            { 
+              type: "changeMap",
+              map: "Outdoors_1",
+              x: utils.withGrid(29),
+              y: utils.withGrid(9), 
+              direction: "up"
+            }
+          ]
+        }
+      ]
+    },
+    walls: {
+      [utils.asGridCoord(5,14)] : true,
+     
     },
   }
   // DemoRoom: {
